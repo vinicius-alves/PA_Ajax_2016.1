@@ -254,17 +254,22 @@ function iniciar() {
 
 function fazerPedidoAJAX(objetoJSON,funcPopularPagina){
     var stringJSON = JSON.stringify(objetoJSON);
+    
     var objPedidoAJAX = new XMLHttpRequest();
     objPedidoAJAX.open("POST", "controller.do");
     objPedidoAJAX.setRequestHeader("Content-Type","application/json;charset=UTF-8");
     // Prepara recebimento da resposta: tipo da resposta JSON!
     objPedidoAJAX.responseType = 'json';
+    console.log("chegou aqui");
     objPedidoAJAX.onreadystatechange =
         function() {
             if(objPedidoAJAX.readyState===4 && objPedidoAJAX.status===200){
                 // A resposta 'response' já é avaliada para json!
                 // Ao contraro da resposta responseText.
                // funcPopularPagina(objPedidoAJAX.response);
+              //console.log(objPedidoAJAX.response);
+               document.getElementById('idpalchave2').value =objPedidoAJAX.response.nome;
+               
             };
         };
     // Envio do pedido

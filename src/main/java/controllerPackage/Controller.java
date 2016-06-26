@@ -16,43 +16,29 @@ public class Controller extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
+        //Inicialização
         BufferedReader br = new BufferedReader(
-                                  new  InputStreamReader(
-                                           request.getInputStream(),"UTF8"));
+                new InputStreamReader(
+                        request.getInputStream(), "UTF8"));
         String textoDoJson = br.readLine();
-        
-        
-        JsonObject jsonObjectDeJava = null;
-        // Ler e fazer o parsing do String para o "objeto json" java
-        try (   //Converte o string em "objeto json" java
-                // Criar um JsonReader.
-                JsonReader readerDoTextoDoJson = 
-                        Json.createReader(new StringReader(textoDoJson))) {
-                // Ler e fazer o parsing do String para o "objeto json" java
-                jsonObjectDeJava = readerDoTextoDoJson.readObject();
-                // Acabou, então fechar o reader.
-        }catch(Exception e){
+        JsonObject jsonEntrada = null;
+        try (JsonReader readerDoTextoDoJson
+                = Json.createReader(new StringReader(textoDoJson))) {
+            jsonEntrada = readerDoTextoDoJson.readObject();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        
-        System.out.println("\n\n\n" + jsonObjectDeJava.getString("botaoEscolhido") + "\n\n\n"); jsonObjectDeJava.getString("botaoEscolhido");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
-        String nomeFantasia = request.getParameter("nomeFantasia");
+        JsonObject jsonSaida;
 
-        /*JsonObject objetoJSON = Json.createObjectBuilder()
-                .add("nome", "nomeFantasia")
+        // Fim da inicialização
+        //System.out.println("\n\n\n" + jsonEntrada.getString("botaoEscolhido") + "\n\n\n"); jsonEntrada.getString("botaoEscolhido");
+        switch (jsonEntrada.getString("botaoEscolhido")) {
+
+            case "Buscar": {
+                 jsonSaida = Json.createObjectBuilder()
+                .add("nome", "nomeFantasia")/*
                 .add("endereco", Json.createObjectBuilder()
                         .add("logradouro","Avenida Atlântica")
                         .add("numero","13")
@@ -68,11 +54,25 @@ public class Controller extends HttpServlet {
                         .add("7-1234")
                         .add("8-1234")
                         .add("9-1234")
-                        )
+                        )*/
                 .build();
+            }
 
-        out.print(objetoJSON.toString());
-        out.flush();*/
+            case "SalvarNovo": {
+                    
+            }
+            
+            default :{
+            jsonSaida = Json.createObjectBuilder()
+                .add("Status", "Botão não programado").build();
+            }
+
+        }
+
+       
+
+        out.print(jsonSaida.toString());
+        out.flush();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
