@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>BiblioPDF2</title>
+        <title>Segundo Trabalho 2016-1 PA</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
@@ -9,6 +9,12 @@
         <link rel="stylesheet" href="css/bibliopdf.css" type="text/css"/>
         
         <script type="text/javascript" src="js/bibliopdf.js"></script>
+        
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        
+        
+        
     </head>
 
     <body>
@@ -165,8 +171,8 @@
                 <tr>
                     <td></td>
                     <td colspan="2" style="text-align:center;">
-                        <input type="button" class="botoes" value="BUSCAR" id="idBuscar"/>
-                        <input type="button" class="botoes" value="LIMPAR" id="idLimparBusca"/>
+                        <input type="button" class="botoes btn btn-default" value="BUSCAR" id="idBuscar"/>
+                        <input type="button" class="botoes btn btn-default" value="LIMPAR" id="idLimparBusca"/>
                     </td>
                     <td></td>
                 </tr>
@@ -181,14 +187,17 @@
                 <tr>
                     <td colspan="4">
                         <div id="idTabelaResultados">
-                            &nbsp;
+                            <table id="idTabelaRespostas" border="1" style="width:100%">
+                                
+                                
+                            </table>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td colspan="2" style="text-align:center;">
-                        Nro. de registros encontrados: 0
+                        <!-- Nro. de registros encontrados: 0 -->
                         <span id="idNroRows"></span>
                     </td>
                     <td></td>
@@ -196,9 +205,9 @@
                 <tr>
                     <td></td>
                     <td colspan="2" style="text-align:center;">
-                        <input type="button" value="< Página anterior" id="idPagAnterior" style="width:130px;"/>
+                        <!--<input type="button" class="btn btn-default" value="< Página anterior" id="idPagAnterior" style="width:130px;"/>
                         <input type="text" id="idPaginaDestino" value="0" style="width:70px;text-align:center;">
-                        <input type="button" value="Próxima página >"  id="idPagProxima"  style="width:130px;"/>
+                        <input type="button" class="btn btn-default" value="Próxima página >"  id="idPagProxima"  style="width:130px;"/>-->
                     </td>
                     <td></td>
                 </tr>
@@ -226,14 +235,14 @@
                 </tr>
                 <tr>
                     <td class="alinha_direita">
-                        <input type="button" value="Anterior" id="idItemAnterior" class="botoesProxAnt"/>
+                        <input type="button" value="Anterior" id="idItemAnterior" class="botoesProxAnt btn btn-default"/>
                         &nbsp;Patrimônio
                     </td>
                     <td>
                         <input type="number" id="idpatrimonio3" readonly/>
                     </td>
                     <td class="alinha_esquerda">
-                        <input type="button" value="Próximo" id="idItemProximo" class="botoesProxAnt"/>
+                        <input type="button" value="Próximo" id="idItemProximo" class="botoesProxAnt btn btn-default"/>
                     </td>
                 </tr>
                 <tr>
@@ -289,9 +298,9 @@
                 <tr>
                     <td></td>
                     <td style="text-align:center;vertical-align:bottom;">
-                        <input type="button" class="botoes" id="idEditar" value="EDITAR"/>
-                        <input type="button" class="botoes" id="idSalvarAtual" value="SALVAR MODIFICAÇÕES"/>
-                        <input type="button" class="botoes" id="idSalvarNovo" value="SALVAR COMO NOVO"/>
+                        <input type="button" class="botoes btn btn-default" id="idEditar" value="EDITAR"/>
+                        <input type="button" class="botoes btn btn-default" id="idSalvarAtual" value="ATUALIZAR"/>
+                        <input type="button" class="botoes btn btn-default" id="idSalvarNovo" value="SALVAR COMO NOVO"/>
                     </td>
                     <td>
                     </td>
@@ -299,9 +308,9 @@
                 <tr>
                     <td></td>
                     <td style="text-align:center;">
-                        <input type="button" class="botoes" id="idDownload" value="DOWNLOAD"/>
-                        <input type="button" class="botoes" id="idLimparCat" value="LIMPAR"/>
-                        <input type="button" class="botoes" id="idExcluir" value="EXCLUIR"/>
+                        
+                        <input type="button" class="botoes btn btn-default" id="idLimparCat" value="LIMPAR"/>
+                        <input type="button" class="botoes btn btn-default" id="idExcluir" value="EXCLUIR"/>
                     </td>
                     <td>
                     </td>
@@ -309,5 +318,8 @@
             </table>
         </div>
         <!--==========================================================================-->
+        
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
     </body>
 </html>

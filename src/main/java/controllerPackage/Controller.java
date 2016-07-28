@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.json.*;
+import model.DAO.*;
+import model.DTOs.RespostaCompletaDTO;
 
 public class Controller extends HttpServlet {
 
@@ -20,57 +22,47 @@ public class Controller extends HttpServlet {
         BufferedReader br = new BufferedReader(
                 new InputStreamReader(
                         request.getInputStream(), "UTF8"));
-        String textoDoJson = br.readLine();
+        String textoDoJson = br.readLine(); 
         JsonObject jsonEntrada = null;
         try (JsonReader readerDoTextoDoJson
                 = Json.createReader(new StringReader(textoDoJson))) {
             jsonEntrada = readerDoTextoDoJson.readObject();
+            System.out.println("\n\n Json entrada = " + jsonEntrada.toString() + "\n\n"); 
+   
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
         JsonObject jsonSaida;
 
         // Fim da inicialização
-        //System.out.println("\n\n\n" + jsonEntrada.getString("botaoEscolhido") + "\n\n\n"); jsonEntrada.getString("botaoEscolhido");
+        
+      
         switch (jsonEntrada.getString("botaoEscolhido")) {
 
             case "Buscar": {
-                 jsonSaida = Json.createObjectBuilder()
-                .add("nome", "nomeFantasia")/*
-                .add("endereco", Json.createObjectBuilder()
-                        .add("logradouro","Avenida Atlântica")
-                        .add("numero","13")
-                        .add("complementos","bloco C apto 601 fundos")
-                        )
-                .add("telefones", Json.createArrayBuilder()
-                        .add("1-1234")
-                        .add("2-1234")
-                        .add("3-1234")
-                        .add("4-1234")
-                        .add("5-1234")
-                        .add("6-1234")
-                        .add("7-1234")
-                        .add("8-1234")
-                        .add("9-1234")
-                        )*/
-                .build();
-            }
+                
+                 jsonSaida = ((new BiblioPDFDAO()).buscarLista(jsonEntrada)).toJSON();
+                
+            }   break;
 
             case "SalvarNovo": {
-                    
-            }
+                Long p =    (new BiblioPDFDAO()).salvarNovo(jsonEntrada);
+                    jsonSaida = Json.createObjectBuilder()
+                .add("patrimonio", p ).build();
+            }  break;
             
-            default :{
+            default :{ 
             jsonSaida = Json.createObjectBuilder()
                 .add("Status", "Botão não programado").build();
             }
 
         }
-
-       
-
+        
+        System.out.println("\n\n JsonSaida = " +jsonSaida.toString() +"\n\n");
+        
         out.print(jsonSaida.toString());
         out.flush();
     }

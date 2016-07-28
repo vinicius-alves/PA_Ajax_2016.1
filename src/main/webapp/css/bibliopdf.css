@@ -14,6 +14,16 @@ body {
     border-bottom:1px solid gray;
 }
 
+.th{
+    
+    text-align:center;
+}
+
+.hidden{
+    
+    visibility: hidden;
+}
+
 #idDivLogin {
     margin-left:auto;
     margin-right:auto;
@@ -44,6 +54,7 @@ body {
 
 .botoes{
     width:175px;
+    margin-top: 5px;
 }
 
 input[type="text"]{

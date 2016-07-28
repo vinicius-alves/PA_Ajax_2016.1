@@ -1,4 +1,4 @@
-package eel418_2016_1.DAO;
+package model.DAO;
 
 
 
@@ -6,11 +6,11 @@ import java.sql.Connection;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
+
 public class BaseDAO {
 
     private DataSource ds;
 
-    private Connection conn;
 //------------------------------------------------------------------------------------------------------------
     public BaseDAO() {
         try {
@@ -29,7 +29,7 @@ public class BaseDAO {
                 return null;
             }
         }catch(Exception e){
-            e.printStackTrace();
+            System.out.println("[BaseDAO.getConnection] Excessão : " + e.getMessage());
         }
         return null;
     }
